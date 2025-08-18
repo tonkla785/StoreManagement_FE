@@ -1,83 +1,13 @@
-<h1>สวัสดี , {{name}}</h1>
-<h2>อายุ {{age}} ปี</h2>
+<app-header title="My Application" />
 
-<!-- expression -->
-<h3>Born year : {{2568 - age}}</h3>
+@for (item of data; track item.id) {
+<app-item
+  [id]="item.id"
+  [name]="item.name"
+  [salary]="item.salary"
+  (onDelete)="removeDataById($event)"
+/>
 
-<!-- method -->
-<h3>{{showAddress()}}</h3>
-<!-- property-->
-<img [src]="imageurl" [width]="size" [height]="size" />
-<!-- expression -->
-<img [src]="imageurl" [width]="size" [height]="size+50" />
-<img [src]="imageurl" [width]="doubleSize()" [height]="doubleSize()" />
-<br>
-<button (click)="showMessage()">Show Message</button>
-
-<h1>ยินดีต้อนรับ , {{username}}</h1>
-<input type="text" [(ngModel)]="username">
-
-<div>
-  @if(isLogin){
-    <h1>Welcome to Angular</h1>
-    <button (click)="toggle()">Logout</button>
-  }@else {
-    <h1>Please Register</h1>
-    <button (click)="toggle()">Login</button>
-  }
-</div>
-
-<!-- <div>
-  @if(userPermission == 'admin') {
-    <h1>Hello , {{name}} Admin Page</h1>
-    <button (click)="changePermission()">manager</button>
-  }@else if(userPermission == 'manager') {
-    <h1>manager Page</h1>
-    <button (click)="changePermission()">customer</button>
-  }@else if(userPermission == 'customer') {
-    <h1>customer Page</h1>
-    <button (click)="changePermission()">kla</button>
-  }@else {
-    <h1>Please Register</h1>
-    <button (click)="changePermission()">admin</button>
-  }
-</div> -->
-
-<div>
-  @switch (userPermission) {
-    @case ("admin") {
-      <h1>Hello , {{name}} Admin Page</h1>
-      <button (click)="changePermission()">manager</button>
-    }
-    @case ("manager") {
-      <h1>manager Page</h1>
-      <button (click)="changePermission()">customer</button>
-    }
-    @case ("customer") {
-      <h1>customer Page</h1>
-      <button (click)="changePermission()">kla</button>
-    }
-    @default {
-      <h1>Please Register</h1>
-      <button (click)="changePermission()">admin</button>
-    }
-  }
-</div>
-
-<div [ngClass]="isActive ? 'dark-mode':'white-mode' " class="border-user">
-  <h3>ข้อมูลพนักงาน</h3>
-  @for (user of data; track user.id) {
-    <div>
-      <h3>รหัสพนักงาน : {{user.id}}</h3>
-      <h4>ชื่อพนักงาน : {{user.name}}</h4>
-      <p>เงินเดือน : {{user.salary}}</p>
-      <hr>
-    </div>
-  }@empty {
-    <p>ไม่มีข้อมูล</p>
-  }
-  <button (click)="clearData()">Clear Data</button>
-  <button (click)="toggleMode()">
-    {{isActive ? 'Light Mode' : 'Dark Mode'}}
-  </button>
-</div>
+}@empty {
+<h2>ไม่มีข้อมูลพนักงาน</h2>
+}
