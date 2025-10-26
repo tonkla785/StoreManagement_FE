@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .TextHeader {
+    @apply font-semibold text-sm sm:text-xl md:text-2xl lg:text-3xl;
+  }
+
+  .TextSidebar {
+    @apply block p-2 hover:bg-gray-700 hover:text-white text-sm sm:text-lg md:text-xl lg:text-2xl rounded font-[500];
+  }
+  .active {
+    @apply text-blue-500 ;
+  }
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

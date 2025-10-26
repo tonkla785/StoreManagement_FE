@@ -1,0 +1,33 @@
+<p>product works!</p>
+<h2 class="flex justify-between items-center">
+  รายการสินค้า
+  <button
+    class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+    (click)="createProduct()"
+  >
+    สร้างสินค้าใหม่
+  </button>
+</h2>
+@if (loading == true) {
+<div>กำลังโหลดข้อมูล...</div>
+} @else {
+<ul>
+  <li *ngFor="let p of products; let i = index">
+    {{ i + 1 }}. {{ p.productName }} - {{ p.productPrice | currency : 'THB' }} -
+    {{ p.productAmount }}
+    <button
+      class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+      (click)="editProduct(p.productId)"
+    >
+      แก้ไข
+    </button>
+    <button
+      class="bg-red-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+      (click)="deleteProduct(p.productId)"
+    >
+      ลบ
+    </button>
+  </li>
+</ul>
+<div *ngIf="errorMessage">{{ errorMessage }}</div>
+}

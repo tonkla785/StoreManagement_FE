@@ -1,0 +1,44 @@
+<h2>สร้างสินค้าใหม่</h2>
+
+<form #productForm="ngForm" (ngSubmit)="createProduct()">
+
+  <div>
+    <label>ชื่อสินค้า:</label>
+    <input type="text"
+           [(ngModel)]="product.productName"
+           name="productName"
+           required
+           #name="ngModel">
+    <div *ngIf="name.invalid && name.touched" class="text-red-500">
+      กรุณากรอกชื่อสินค้า
+    </div>
+  </div>
+
+  <div>
+    <label>ราคา:</label>
+    <input type="number"
+           [(ngModel)]="product.productPrice"
+           name="productPrice"
+           required
+           #price="ngModel">
+    <div *ngIf="price.invalid && price.touched" class="text-red-500">
+      กรุณากรอกราคา
+    </div>
+  </div>
+
+  <div>
+    <label>จำนวน:</label>
+    <input type="number"
+           [(ngModel)]="product.productAmount"
+           name="productAmount"
+           required
+           #amount="ngModel">
+    <div *ngIf="amount.invalid && amount.touched" class="text-red-500">
+      กรุณากรอกจำนวน
+    </div>
+  </div>
+
+  <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-gray-600" [disabled]="loading">สร้างสินค้า</button>
+</form>
+
+<div *ngIf="errorMessage" class="text-red-500 mt-2">{{ errorMessage }}</div>

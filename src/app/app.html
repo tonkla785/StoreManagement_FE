@@ -1,13 +1,2 @@
-<app-header title="My Application" />
-
-@for (item of data; track item.id) {
-<app-item
-  [id]="item.id"
-  [name]="item.name"
-  [salary]="item.salary"
-  (onDelete)="removeDataById($event)"
-/>
-
-}@empty {
-<h2>ไม่มีข้อมูลพนักงาน</h2>
-}
+<app-navbar></app-navbar>
+<router-outlet></router-outlet>

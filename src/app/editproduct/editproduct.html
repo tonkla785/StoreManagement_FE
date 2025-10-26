@@ -1,0 +1,48 @@
+<p>editproduct works!</p>
+<form #editForm="ngForm" (ngSubmit)="saveChanges(editForm)">
+  <div *ngIf="product">
+    <h2>แก้ไขสินค้า: {{ product.productName }}</h2>
+
+    <div>
+      <label>ชื่อสินค้า:</label>
+      <input
+        type="text"
+        name="productName"
+        [(ngModel)]="product.productName"
+        required
+        minlength="2"
+        #nameRef="ngModel"
+      />
+      <div *ngIf="nameRef.invalid && nameRef.touched" class="text-red-500">กรุณากรอกชื่อสินค้า</div>
+    </div>
+
+    <div>
+      <label>ราคา:</label>
+      <input
+        type="number"
+        name="productPrice"
+        [(ngModel)]="product.productPrice"
+        required
+        min="0"
+        #priceRef="ngModel"
+      />
+      <div *ngIf="priceRef.invalid && priceRef.touched" class="text-red-500">กรุณากรอกราคา</div>
+    </div>
+
+    <div>
+      <label>จำนวน:</label>
+      <input
+        type="number"
+        name="productAmount"
+        [(ngModel)]="product.productAmount"
+        required
+        min="0"
+        #amountRef="ngModel"
+      />
+      <div *ngIf="amountRef.invalid && amountRef.touched" class="text-red-500">กรุณากรอกจำนวน</div>
+    </div>
+
+    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-gray-600" [disabled]="loading">บันทึก</button>
+  </div>
+</form>
+<div *ngIf="errorMessage" class="text-red-500 mt-2">{{ errorMessage }}</div>

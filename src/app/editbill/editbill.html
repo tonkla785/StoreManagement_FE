@@ -1,0 +1,29 @@
+<form #editbillForm="ngForm" (ngSubmit)="updateBill(editbillForm)">
+  <div>
+    <label>ชื่อบิล:</label>
+    <input name="saleName" [(ngModel)]="saleName" required />
+  </div>
+
+  <h3>รายการสินค้า</h3>
+  <ul>
+    <li *ngFor="let item of cart; let i = index">
+      {{ item.product.productName }} - {{ item.product.productPrice | currency:'THB' }}
+      x <input type="number" [(ngModel)]="item.quantity" name="quantity{{i}}" min="1" required />
+      <button type="button" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-blue-600" (click)="removeFromCart(item.product.productId)">ลบ</button>
+    </li>
+  </ul>
+  <h3>ยอดรวม: {{ saleTotal | currency:'THB' }}</h3>
+
+  <h3>เพิ่มสินค้า</h3>
+  <ul>
+    <li *ngFor="let p of products">
+      {{ p.productName }} - {{ p.productPrice | currency:'THB' }}
+      <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" (click)="addToCart(p)">เพิ่ม</button>
+    </li>
+  </ul>
+
+
+
+  <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-blue-600" (click)="updateBill(editbillForm)">อัปเดตบิล</button>
+  <button type="cancel" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-blue-600" (click)="this.router.navigate(['/bill']);">ยกเลิก</button>
+</form>

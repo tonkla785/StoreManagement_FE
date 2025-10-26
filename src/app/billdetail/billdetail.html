@@ -1,0 +1,16 @@
+<div *ngIf="bill">
+  <h4>รายละเอียดสินค้า:</h4>
+  <p>บิล: {{ bill.saleName }}</p>
+  <ul>
+    <li *ngFor="let detail of bill.saleDetails">
+      🛒 สินค้า: {{ detail.productId.productName }} |
+      จำนวน: {{ detail.quantitySale }} |
+      ราคา: {{ detail.productId.productPrice| currency:'THB' }}
+      Total: {{ detail.priceSale| currency:'THB' }}
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="!bill && !loading">
+  ❌ ไม่พบข้อมูลใบเสร็จ
+</div>

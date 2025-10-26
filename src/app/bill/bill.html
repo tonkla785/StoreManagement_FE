@@ -1,0 +1,48 @@
+<p>bill works!</p>
+<h2 class="flex justify-between items-center">
+  บิลทั้งหมด
+  <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" (click)="createBill()">
+    สร้างบิลใหม่
+  </button>
+</h2>
+
+<div class="my-4 flex">
+  <input
+    type="text"
+    [(ngModel)]="searchKeyword"
+    (ngModelChange)="onSearchChange($event)"
+    placeholder="ค้นหาบิลด้วยชื่อ..."
+    class="border rounded px-2 py-1 flex-1"
+  />
+</div>
+
+@if (loading) {
+<div>กำลังโหลดข้อมูล...</div>
+} @else {
+<div *ngIf="bills.length === 0" class="text-gray-500">ไม่พบบิลที่ตรงกับคำค้น</div>
+<ul>
+  <li *ngFor="let b of bills; let i = index">
+    {{ i + 1 }}. {{ b.saleDate | date : 'yyyy-MM-dd HH:mm:ss' }} - {{ b.saleName }} -
+    {{ b.saleTotal | currency : 'THB' }}
+    <button
+      class="bg-green-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+      (click)="detailBill(b.saleId)"
+    >
+      ดูรายละเอียด
+    </button>
+    <button
+      class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+      (click)="editBill(b.saleId)"
+    >
+      แก้ไข
+    </button>
+    <button
+      class="bg-red-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+      (click)="deleteBill(b.saleId)"
+    >
+      ลบ
+    </button>
+  </li>
+</ul>
+<div *ngIf="errorMessage">{{ errorMessage }}</div>
+}

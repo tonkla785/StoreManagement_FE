@@ -1,0 +1,55 @@
+<div class="dashboard-container" *ngIf="!loading; else loadingTemplate">
+  <h2 class="text-center mb-4">ยอดขายสินค้าทั้งหมด</h2>
+
+  <!-- กราฟแสดงยอดขาย -->
+  <div style="width: 100%; max-width: 800px; margin: auto;">
+    <canvas baseChart
+      [data]="barChartData"
+      [options]="barChartOptions"
+      [type]="'bar'">
+    </canvas>
+  </div>
+
+  <!-- ตารางสรุปยอดขายสินค้า -->
+  <div class="table-container mt-6">
+    <table class="table-auto w-full text-left border-collapse border border-gray-300 mt-5">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="border border-gray-300 px-4 py-2">ชื่อสินค้า</th>
+          <th class="border border-gray-300 px-4 py-2 text-right">จำนวนที่ขายได้</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of productSales">
+          <td class="border border-gray-300 px-4 py-2">{{ product.productName }}</td>
+          <td class="border border-gray-300 px-4 py-2 text-right">{{ product.totalQuantity }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>ยอดขาย 30 วันที่ผ่านมา: {{ monthlySale | number:'1.0-0' }} บาท</h3>
+
+  <div>
+  <h3>ยอดขายตามช่วงวันที่</h3>
+  <label>
+    วันที่เริ่มต้น:
+    <input type="date" [(ngModel)]="startDate">
+  </label>
+  <label>
+    วันที่สิ้นสุด:
+    <input type="date" [(ngModel)]="endDate">
+  </label>
+  <button (click)="fetchRangeSale()">คำนวณยอดขาย</button>
+
+  <div *ngIf="rangeSale">
+    ยอดขายรวม: {{ rangeSale | number:'1.0-0' }} บาท
+  </div>
+</div>
+</div>
+
+<!-- Loading -->
+<ng-template #loadingTemplate>
+  <div class="text-center py-10 text-gray-600">
+    กำลังโหลดข้อมูล...
+  </div>
+</ng-template>

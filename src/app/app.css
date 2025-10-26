@@ -1,18 +1,1 @@
-.border-user {
-  border: 1px solid black;
-  border-radius: 20px;
-  padding: 10px;
-  margin-top: 20px;
-}
 
-.dark-mode{
-  background-color: #333;
-  color: white;
-  transition: all 0.5s;
-}
-
-.white-mode{
-  background-color: white;
-  color: black;
-  transition: all 0.5s;
-}

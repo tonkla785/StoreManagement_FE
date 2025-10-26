@@ -1,0 +1,68 @@
+<h2>สร้างบิลใหม่</h2>
+
+<form #billForm="ngForm" (ngSubmit)="submitBill(billForm)">
+  <div>
+    <label>ชื่อบิล / ชื่อลูกค้า:</label>
+    <input
+      type="text"
+      [(ngModel)]="saleName"
+      name="saleName"
+      required
+      #name="ngModel"
+      placeholder="ชื่อบิล"
+    />
+    <div *ngIf="name.invalid && name.touched" class="text-red-500">
+      ⚠️ กรุณากรอกชื่อบิล / ชื่อลูกค้า
+    </div>
+  </div>
+
+  <hr />
+
+  <h3>รายการสินค้า</h3>
+  <ul>
+    <li *ngFor="let p of products">
+      {{ p.productName }} - {{ p.productPrice | currency : 'THB' }} - {{p.productAmount}} ชิ้น
+      <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" (click)="addToCart(p)">เพิ่ม</button>
+    </li>
+  </ul>
+
+  <hr />
+
+  <h3>ตะกร้าสินค้า</h3>
+  <table *ngIf="cart.length > 0" border="1" cellpadding="4">
+    <thead>
+      <tr>
+        <th>สินค้า</th>
+        <th>จำนวน</th>
+        <th>ราคา/ชิ้น</th>
+        <th>รวม</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cart">
+        <td>{{ item.product.productName }}</td>
+        <td>
+          <input
+            type="number"
+            [(ngModel)]="item.quantity"
+            name="quantity{{ item.product.productId }}"
+            (change)="calculateTotal()"
+            min="1"
+          />
+        </td>
+        <td>{{ item.product.productPrice | currency : 'THB' }}</td>
+        <td>{{ item.product.productPrice * item.quantity | currency : 'THB' }}</td>
+        <td><button type="button" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-blue-600" (click)="removeFromCart(item.product.productId)">ลบ</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="cart.length === 0">ยังไม่มีสินค้าในตะกร้า</p>
+
+  <hr />
+
+  <h3>ราคารวมทั้งหมด: {{ saleTotal | currency : 'THB' }}</h3>
+
+  <button type="button" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-blue-600" (click)="submitBill(billForm)">สร้างบิล</button>
+</form>

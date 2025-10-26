@@ -1,0 +1,17 @@
+<div class="flexible-container bg-green-500">
+  <mat-drawer-container class="w-screen h-screen" autosize>
+    <mat-drawer class="p-4" mode="side" opened [style.width.px]="drawerWidth">
+      <a routerLink="product" routerLinkActive="active" class="TextHeader">StoreManagement</a>
+      <ul class="mt-4 space-y-2">
+        <li><a routerLink ="/bill" routerLinkActive="active" class="TextSidebar">Bill</a></li>
+        <li><a routerLink ="/dashboard" routerLinkActive="active" class="TextSidebar">Dashboard</a></li>
+      </ul>
+    </mat-drawer>
+
+    <mat-drawer-content class="flex-1 bg-violet-100 p-4">
+      <h1 class="text-2xl font-bold mb-4">Main Content</h1>
+      <p>This is the main content area with a different background color.</p>
+      <router-outlet></router-outlet>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>
