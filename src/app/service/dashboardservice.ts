@@ -16,7 +16,7 @@ interface ApiResponse {
 
 @Injectable({ providedIn: 'root' })
 export class DashboardService {
-  private baseUrl = 'http://localhost:8080/dashboard';
+  private baseUrl = 'https://storemanagement-be.onrender.com/dashboard';
 
   constructor(private http: HttpClient) {}
 

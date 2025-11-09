@@ -26,23 +26,25 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
+  private baseUrl = 'https://storemanagement-be.onrender.com/service';
+
   getProducts(): Observable<ProductType> {
-    return this.http.get<ApiResponse<ProductType>>(`http://localhost:8080/service/`).pipe(map(res => res.data));
+    return this.http.get<ApiResponse<ProductType>>(`${this.baseUrl}/`).pipe(map(res => res.data));
   }
 
   getProductById(id: number): Observable<ProductType> {
-    return this.http.get<ApiResponse<ProductType>>(`http://localhost:8080/service/${id}`).pipe(map(res => res.data));
+    return this.http.get<ApiResponse<ProductType>>(`${this.baseUrl}/${id}`).pipe(map(res => res.data));
   }
 
   updateProduct(id: number, product: ProductType): Observable<any> {
-    return this.http.put(`http://localhost:8080/service/update/${id}`, product);
+    return this.http.put(`${this.baseUrl}/update/${id}`, product);
   }
 
   createProduct(product: ProductType): Observable<any> {
-    return this.http.post(`http://localhost:8080/service/product`, product);
+    return this.http.post(`${this.baseUrl}/product`, product);
   }
 
   deleteProduct(id: number): Observable<any> {
-    return this.http.delete(`http://localhost:8080/service/delete/${id}`);
+    return this.http.delete(`${this.baseUrl}/delete/${id}`);
   }
 }

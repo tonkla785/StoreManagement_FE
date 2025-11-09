@@ -1,4 +1,4 @@
-<h2>สร้างบิลใหม่</h2>
+<h2 class="font-bold text-xl">สร้างบิลใหม่</h2>
 
 <form #billForm="ngForm" (ngSubmit)="submitBill(billForm)">
   <div>
@@ -18,7 +18,7 @@
 
   <hr />
 
-  <h3>รายการสินค้า</h3>
+  <h3 class="font-bold text-xl">รายการสินค้า</h3>
   <ul>
     <li *ngFor="let p of products">
       {{ p.productName }} - {{ p.productPrice | currency : 'THB' }} - {{p.productAmount}} ชิ้น
@@ -62,7 +62,7 @@
 
   <hr />
 
-  <h3>ราคารวมทั้งหมด: {{ saleTotal | currency : 'THB' }}</h3>
+  <h3 class="font-bold text-xl">ราคารวมทั้งหมด: {{ saleTotal | currency : 'THB' }}</h3>
 
   <button type="button" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-blue-600" (click)="submitBill(billForm)">สร้างบิล</button>
 </form>

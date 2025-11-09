@@ -43,28 +43,30 @@ export class BillService {
 
   constructor(private http: HttpClient) { }
 
+  private baseUrl = 'https://storemanagement-be.onrender.com/sales';
+
   getBills(): Observable<BillType> {
-    return this.http.get<ApiResponse<BillType>>(`http://localhost:8080/sales/`).pipe(map(res => res.data));
+    return this.http.get<ApiResponse<BillType>>(`${this.baseUrl}/`).pipe(map(res => res.data));
   }
 
   getBillById(saleId: number): Observable<BillType> {
-    return this.http.get<ApiResponse<BillType>>(`http://localhost:8080/sales/${saleId}`).pipe(map(res => res.data));
+    return this.http.get<ApiResponse<BillType>>(`${this.baseUrl}/${saleId}`).pipe(map(res => res.data));
   }
 
   createBill(billDetails: { productId: number; quantity: number; billName: string }[]): Observable<any> {
-    return this.http.post(`http://localhost:8080/sales/create`, billDetails);
+    return this.http.post(`${this.baseUrl}/create`, billDetails);
   }
 
 
   updateBill(id: number, billDetails: { productId: number; quantity: number; billName: string }[]): Observable<any> {
-    return this.http.put(`http://localhost:8080/sales/update/${id}`, billDetails);
+    return this.http.put(`${this.baseUrl}/update/${id}`, billDetails);
   }
 
   deleteBill(id: number): Observable<any> {
-    return this.http.delete(`http://localhost:8080/sales/delete/${id}`);
+    return this.http.delete(`${this.baseUrl}/delete/${id}`);
   }
 
   searchBills(keyword: string): Observable<BillType> {
-    return this.http.get<ApiResponse<BillType>>(`http://localhost:8080/sales/search?keyword=${keyword}`).pipe(map(res => res.data));
+    return this.http.get<ApiResponse<BillType>>(`${this.baseUrl}/search?keyword=${keyword}`).pipe(map(res => res.data));
   }
 }

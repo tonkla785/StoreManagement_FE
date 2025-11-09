@@ -12,9 +12,9 @@
       <button type="button" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-blue-600" (click)="removeFromCart(item.product.productId)">ลบ</button>
     </li>
   </ul>
-  <h3>ยอดรวม: {{ saleTotal | currency:'THB' }}</h3>
+  <h3 class="font-bold text-xm">ยอดรวม: {{ saleTotal | currency:'THB' }}</h3>
 
-  <h3>เพิ่มสินค้า</h3>
+  <h3 class="font-bold text-xl">เพิ่มสินค้า</h3>
   <ul>
     <li *ngFor="let p of products">
       {{ p.productName }} - {{ p.productPrice | currency:'THB' }}

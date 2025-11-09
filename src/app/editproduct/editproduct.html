@@ -1,7 +1,7 @@
-<p>editproduct works!</p>
+
 <form #editForm="ngForm" (ngSubmit)="saveChanges(editForm)">
   <div *ngIf="product">
-    <h2>แก้ไขสินค้า: {{ product.productName }}</h2>
+    <h2 class="font-bold text-xl">แก้ไขสินค้า: {{ product.productName }}</h2>
 
     <div>
       <label>ชื่อสินค้า:</label>

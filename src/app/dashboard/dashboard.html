@@ -1,5 +1,5 @@
 <div class="dashboard-container" *ngIf="!loading; else loadingTemplate">
-  <h2 class="text-center mb-4">ยอดขายสินค้าทั้งหมด</h2>
+  <h2 class="text-center mb-4 font-bold">ยอดขายสินค้าทั้งหมด</h2>
 
   <!-- กราฟแสดงยอดขาย -->
   <div style="width: 100%; max-width: 800px; margin: auto;">
@@ -39,9 +39,9 @@
     วันที่สิ้นสุด:
     <input type="date" [(ngModel)]="endDate">
   </label>
-  <button (click)="fetchRangeSale()">คำนวณยอดขาย</button>
+  <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-gray-600" (click)="fetchRangeSale()">คำนวณยอดขาย</button>
 
-  <div *ngIf="rangeSale">
+  <div *ngIf="rangeSale" class="font-bold text-xl">
     ยอดขายรวม: {{ rangeSale | number:'1.0-0' }} บาท
   </div>
 </div>
